@@ -226,6 +226,20 @@ Dictionary.Remove   : {4}
             public string Name { get; set; }
 
             public int Age { get; set; }
+
+            public override int GetHashCode()
+            {
+                return Age.GetHashCode() ^ Name.GetHashCode();
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj == null || !(obj is Person))
+                    return false;
+
+                var o = (Person)obj;
+                return (Age == o.Age) & (Name == o.Name);
+            }
         }
     }
 }
